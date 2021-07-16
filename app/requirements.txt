@@ -1,0 +1,6 @@
+django
+isort
+pylint-django
+django-crispy-forms
+black
+django-allauth
