@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Individual Applications
+{% endblock title %}
+
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="fs-1">Individual Applications</h1>
+    <hr>
+    <a class="btn btn-sm btn-dark mb-5" href="{% url 'applications:individual-create' %}">New application</a>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for object in object_list %}
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                {% empty %}
+                <td colspan="4">
+                    <h4 class="text-center">No Individual Applications</h4>
+                </td>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

@@ -10,7 +10,7 @@ User = settings.AUTH_USER_MODEL
 @receiver(post_save, sender=User)
 def create_employee_profile(sender, instance, created, **kwargs):
     if created:
-        Employee.objects.get_or_create(user=instance)
+        Employee.objects.get_or_create(employee=instance)
 
 
 @receiver(post_save, sender=User)

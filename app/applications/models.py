@@ -2,8 +2,6 @@ from django.db import models
 from django.urls import reverse
 from mixins.assets import (
     TimeStampMixin,
-    COMMUNITY_LIST,
-    QUARTER_LIST,
     OFFICE_LIST,
     APPLICATION_STATUS_LIST,
     APPLICATION_TYPE,
@@ -41,7 +39,7 @@ class IndividualApplication(TimeStampMixin):
     land_use = models.CharField(
         max_length=20, default="RESIDENTIAL", choices=LAND_USE_LIST
     )
-    land_uses = models.CharField(max_length=200, blank=True, null=True)
+    other_land_uses = models.CharField(max_length=200, blank=True, null=True)
     response_date = models.DateTimeField(blank=True, null=True)
     easement = models.CharField(
         max_length=25, default="WATER CONNECTION", choices=EASEMENT_LIST
