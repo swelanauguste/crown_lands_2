@@ -40,6 +40,9 @@ class Individual(TimeStampMixin):
     class Meta:
         ordering = ["last_name"]
 
+    def get_update_url(self):
+        return reverse("clients:individual-update", kwargs={"pk": self.pk})
+
     def get_absolute_url(self):
         return reverse("clients:individual-detail", kwargs={"pk": self.pk})
 
@@ -48,10 +51,10 @@ class Individual(TimeStampMixin):
             return "%s, %s %s" % (self.last_name, self.first_name, self.middle_name)
         return "%s, %s" % (self.last_name, self.first_name)
 
-    def get_object_address(self):
+    def get_object_full_name(self):
         if self.home_address:
             return self.home_address
-        return str(self.community)
+        return '%s, %s' % (self.community, self.quarter)
 
     def __str__(self):
         if self.middle_name and self.first_name and self.last_name:
@@ -66,10 +69,10 @@ def acquisition_documents_directory_path(instance, filename):
 
 
 class Identification(TimeStampMixin):
+    id_type = models.CharField("Type", max_length=50, choices=TYPE_OF_IDENTIFICATION_LIST)
     individual = models.ForeignKey(
         Individual, related_name="identifications", null=True, on_delete=models.SET_NULL
     )
-    id_type = models.CharField(max_length=50, choices=TYPE_OF_IDENTIFICATION_LIST)
     file = models.FileField(upload_to=acquisition_documents_directory_path)
 
     def __str__(self):

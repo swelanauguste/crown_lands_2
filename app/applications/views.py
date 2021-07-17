@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 from .models import IndividualApplication
-from .forms import IndividualApplicationCreateForm
+from .forms import IndividualApplicationCreateForm, IndividualApplicationUpdateForm
 
 
 class Index(TemplateView):
@@ -22,4 +22,5 @@ class IndividualApplicationCreate(CreateView):
 
 class IndividualApplicationUpdate(UpdateView):
     model = IndividualApplication
-    fields = "__all__"
+    form_class = IndividualApplicationUpdateForm
+    template_name_suffix = '_update_form'

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Individual clients
+{% endblock title %}
+
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="fs-1">Individual clients</h1>
+    <hr>
+    <div class="container">
+        <a class="btn btn-sm btn-dark mb-5"
+            href="{% url 'clients:individual-create' %}">New</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">name</th>
+                    <th scope="col">address</th>
+                    <th scope="col">contact</th>
+                    <th scope="col">email</th>
+                    <th scope="col">nationality</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for object in object_list %}
+
+                <tr>
+                    <td>{{object.get_object_full_name}}</td>
+                    <td>{{object.get_object_address|title}}</td>
+                    <td>{{object.tel1}}</td>
+                    <td>{{object.email}}</td>
+                    <td>{{object.nationality}}</td>
+                    <td colspan="2">
+                        <a href="{{object.get_absolute_url}}">
+                            details
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <td colspan="4">
+                    <h4 class="text-center">No Individuals</h4>
+                </td>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

@@ -14,5 +14,5 @@ class AssignApplicationAdmin(admin.ModelAdmin):
 
 @admin.register(IndividualApplication)
 class IndividualApplicationAdmin(admin.ModelAdmin):
-    list_display = ["applicant_number", "status", "pk"]
+    list_display = ["application_number", "status", "pk"]
     list_editable = ["status"]

@@ -21,7 +21,7 @@
                 id="home-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li><a href="{% url 'applications:individual-list'%}"
-                            class="link-dark rounded">Individual</a></li>
+                            class="link-dark rounded">Individuals</a></li>
                     <!-- <li><a href="#"
                             class="link-dark rounded">Updates</a></li>
                     <li><a href="#"
@@ -34,19 +34,19 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#dashboard-collapse"
                 aria-expanded="false">
-                Dashboard
+                Clients
             </button>
             <div class="collapse"
                 id="dashboard-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#"
-                            class="link-dark rounded">Overview</a></li>
-                    <li><a href="#"
+                    <li><a href="{% url 'clients:individual-list' %}"
+                            class="link-dark rounded">Individuals</a></li>
+                    <!-- <li><a href="#"
                             class="link-dark rounded">Weekly</a></li>
                     <li><a href="#"
                             class="link-dark rounded">Monthly</a></li>
                     <li><a href="#"
-                            class="link-dark rounded">Annually</a></li>
+                            class="link-dark rounded">Annually</a></li> -->
                 </ul>
             </div>
         </li>

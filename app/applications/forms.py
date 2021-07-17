@@ -15,3 +15,15 @@ class IndividualApplicationCreateForm(forms.ModelForm):
             "easement": forms.CheckboxSelectMultiple(),
             "notes": forms.Textarea(attrs={"rows": 3}),
         }
+
+
+class IndividualApplicationUpdateForm(forms.ModelForm):
+    class Meta:
+        model = IndividualApplication
+        fields = "__all__"
+        exclude = ["created_by", "updated_by", "date_received", "application_number", "status", 'received_at']
+        widgets = {
+            "land_use": forms.CheckboxSelectMultiple(),
+            "easement": forms.CheckboxSelectMultiple(),
+            "notes": forms.Textarea(attrs={"rows": 3}),
+        }

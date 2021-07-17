@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+New Individual Application
+{% endblock title %}
+
+
+{% block content %}
+<div class="container my-5 small">
+    <h1 class="fs-1">New Individual Application</h1>
+    <hr>
+    <div class="card p-5 shadow-lg" style="max-width: 32rem;">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <form class=""
+                action=""
+                method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-end">
+                    <button class="btn btn-sm btn-dark my-3"
+                        type="submit">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(".form-control").addClass("form-control-sm");
+</script>
+
+{% endblock content %}

@@ -19,7 +19,7 @@ def application_documents_directory_path(instance, filename):
 
 class IndividualApplication(TimeStampMixin):
     filing_number = models.CharField(max_length=200, unique=True, blank=True)
-    applicant_number = models.CharField(
+    application_number = models.CharField(
         max_length=20, unique=True, null=True, blank=True
     )
     date_received = models.DateField(null=True, blank=True)
@@ -48,6 +48,9 @@ class IndividualApplication(TimeStampMixin):
     date_completed = models.DateTimeField(null=True, blank=True)
     notes = models.TextField(blank=True)
     file = models.FileField(upload_to=application_documents_directory_path, blank=True)
+
+    def get_update_url(self):
+        return reverse("applications:individual-update", kwargs={"pk": self.pk})
 
     def get_absolute_url(self):
         return reverse("applications:individual-detail", kwargs={"pk": self.pk})

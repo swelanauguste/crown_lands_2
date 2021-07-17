@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{object}}
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="fs-1">{{object}}</h1>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <div class="card shadow-lg p-5"
+                style="max-width: 32rem;">
+                <div class="card-body">
+                    <p class="card-text my-0">
+                        {{object.get_object_full_name|title}}</p>
+                    <p class="card-text text-muted small border-top">address
+                    </p>
+                    <p class="card-text my-0">{{object.occupation|title}}</p>
+                    <p class="card-text text-muted small border-top">occupation
+                    </p>
+                    <p class="card-text my-0">{{object.tel1|default:"--"}}</p>
+                    <p class="card-text text-muted small border-top">contact
+                    </p>
+                    <p class="card-text my-0">{{object.email|default:"--"}}</p>
+                    <p class="card-text text-muted small border-top">email</p>
+                    <p class="card-text my-0">
+                        {{object.nationality|default:"--"}}</p>
+                    <p class="card-text text-muted small border-top">
+                        nationality</p>
+
+                </div>
+
+                <a class="btn btn-sm btn-dark my-3"
+                    href="{{object.get_update_url}}">edit</a>
+            </div>
+        </div>
+        <div class="col">
+            <a class="btn btn-sm btn-dark my-3"
+                href="{% url 'clients:identification-create' %}">add ID</a>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

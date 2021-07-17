@@ -10,14 +10,18 @@ Individual Applications
 <div class="container my-5">
     <h1 class="fs-1">Individual Applications</h1>
     <hr>
-    <a class="btn btn-sm btn-dark mb-5" href="{% url 'applications:individual-create' %}">New application</a>
+    <a class="btn btn-sm btn-dark mb-5"
+        href="{% url 'applications:individual-create' %}">New application</a>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">#</th>
+                    <th scope="col">received</th>
+                    <th scope="col">status</th>
+                    <th scope="col">black and parcel</th>
+                    <th scope="col">type</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +29,16 @@ Individual Applications
                 {% for object in object_list %}
 
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>{{object.applicant_number}}</td>
+                    <td>{{object.date_received}}</td>
+                    <td>{{object.status}}</td>
+                    <td>{{object.block_parcel}}</td>
+                    <td>{{object.application_type}}</td>
+                    <td>
+                        <a href="{{object.get_absolute_url}}">
+                            details
+                        </a>
+                    </td>
                 </tr>
                 {% empty %}
                 <td colspan="4">
