@@ -73,9 +73,9 @@ class Individual(TimeStampMixin):
         return "%s, %s" % (self.last_name, self.first_name)
 
 
-def acquisition_documents_directory_path(instance, filename):
-    return "individual_identification_documents/{0}/{1}".format(
-        instance.individual.id, filename
+def identification_documents_directory_path(instance, filename):
+    return "individual_identification_documents/{0}/{1}/{2}".format(
+        instance.id_type, instance.individual.id, filename
     )
 
 
@@ -86,7 +86,7 @@ class Identification(TimeStampMixin):
     individual = models.ForeignKey(
         Individual, related_name="identifications", null=True, on_delete=models.SET_NULL
     )
-    file = models.FileField(upload_to=acquisition_documents_directory_path)
+    file = models.FileField(upload_to=identification_documents_directory_path)
 
     def __str__(self):
-        return self.individual
+        return str(self.file)

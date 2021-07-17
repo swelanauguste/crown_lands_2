@@ -2,15 +2,18 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-New Individual Application
+{{object}}
 {% endblock title %}
 
 
 {% block content %}
 <div class="container my-5 small">
-    <h1 class="fs-1">New Individual Application</h1>
+    <a class="btn btn-dark my-3"
+        href="{{object.get_absolute_url}}">back</a>
+    <h1 class="fs-1">{{object}}</h1>
     <hr>
-    <div class="card p-5 shadow-lg" style="max-width: 32rem;">
+    <div class="card p-5 shadow-lg"
+        style="max-width: 32rem;">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <form class=""
                 action=""

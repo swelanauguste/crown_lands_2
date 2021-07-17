@@ -32,10 +32,11 @@
                         nationality</p>
 
                 </div>
+                {{form}}
                 <hr>
                 <div class="d-grid gap-2 d-md-block text-end">
                     <a class="btn btn-dark"
-                        href="{{object.get_update_url}}">attach identification</a>
+                        href="{% url 'clients:identification-create' %}">attach identification</a>
                     <a class="btn btn-sm btn-outline-dark"
                         href="{{object.get_update_url}}">edit</a>
                 </div>
@@ -45,7 +46,7 @@
             <div class="d-grid gap-2 col-6">
                
                 <a class="btn btn-lg btn-outline-dark py-4"
-                    href="{% url 'clients:identification-create' %}">Add
+                    href="{% url 'properties:property-create' %}">Add
                     Property
                 </a>
                 <hr>

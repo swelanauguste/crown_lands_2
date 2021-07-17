@@ -54,9 +54,7 @@ class IndividualApplication(TimeStampMixin):
         max_length=20, unique=True, null=True, blank=True
     )
     date_received = models.DateField(null=True, blank=True)
-    applicant = models.ForeignKey(
-        Individual, on_delete=models.SET_NULL, null=True, blank=True
-    )
+    applicant = models.ManyToManyField(Individual)
     status = models.ForeignKey(
         ApplicationStatus,
         related_name="application_statuses",
@@ -75,6 +73,11 @@ class IndividualApplication(TimeStampMixin):
     easement = models.ManyToManyField(Easement)
     other_easement = models.CharField(max_length=200, blank=True, null=True)
     date_completed = models.DateTimeField(null=True, blank=True)
+    occupied_by_me = models.BooleanField(default=False, blank=True)
+    years_occupied_by_me = models.PositiveSmallIntegerField(null=True, blank=True)
+    area_requested = models.CharField(
+        max_length=10, null=True, blank=True, help_text="(imperial/metric)"
+    )
     notes = models.TextField(blank=True)
     file = models.FileField(upload_to=application_documents_directory_path, blank=True)
 
@@ -85,7 +88,7 @@ class IndividualApplication(TimeStampMixin):
         return reverse("applications:individual-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return "%s | %s" % (self.block_parcel, self.applicant)
+        return "%s | %s" % (self.block_parcel, self.application_number)
 
 
 class AssignApplication(TimeStampMixin):

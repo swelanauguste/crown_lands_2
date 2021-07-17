@@ -14,7 +14,7 @@ class Command(BaseCommand):
         file_name = kwargs["file_name"]
         with open(f"{file_name}") as file:
             for row in file:
-                name = row.capitalize().replace("\n", "")
+                name = row.title().replace("\n", "")
                 self.stdout.write(self.style.SUCCESS(f"{name} added"))
                 LandUse.objects.get_or_create(name=name)
         self.stdout.write(self.style.SUCCESS("list of easement added"))

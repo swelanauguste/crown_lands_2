@@ -2,16 +2,16 @@
 
 
 {% block title %}
-Individuals
+Properties
 {% endblock title %}
 
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="fs-1">Individuals</h1>
+    <h1 class="fs-1">Properties</h1>
     <hr>
     <div class="container">
-        <a class="btn btn-lg btn-dark mb-5"
+        <a class="btn btn-dark mb-5 px-5"
             href="{% url 'properties:property-create' %}">add</a>
     </div>
     <div class="table-responsive">
@@ -32,7 +32,7 @@ Individuals
                 <tr>
                     <td>
                         <a class="text-decorations-none text-dark" href="{{object.get_absolute_url}}">
-                            {{object.get_object_full_name}}
+                            {{object}}
                         </a>
                     </td>
                     <td>{{object.get_object_full_address|title}}</td>

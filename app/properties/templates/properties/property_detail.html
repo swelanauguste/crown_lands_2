@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
 
 {% block title %}
 {{object}}
@@ -15,27 +16,65 @@
                 style="max-width: 32rem;">
                 <div class="card-body">
                     <p class="card-text my-0">
-                        {{object.get_object_full_name|title}}</p>
-                    <p class="card-text text-muted small border-top">address
+                        {{object}}</p>
+                    <p class="card-text text-muted small border-top">block &
+                        Parcel
                     </p>
-                    <p class="card-text my-0">{{object.occupation|title}}</p>
-                    <p class="card-text text-muted small border-top">occupation
-                    </p>
-                    <p class="card-text my-0">{{object.tel1|default:"--"}}</p>
-                    <p class="card-text text-muted small border-top">contact
-                    </p>
-                    <p class="card-text my-0">{{object.email|default:"--"}}</p>
-                    <p class="card-text text-muted small border-top">email</p>
                     <p class="card-text my-0">
-                        {{object.nationality|default:"--"}}</p>
+                        {{object.get_object_full_address|title}}</p>
+                    <p class="card-text text-muted small border-top">location
+                    </p>
+                    <p class="card-text my-0">
+                        {{object.is_occupied|yesno:"yes,no"|title}}</p>
                     <p class="card-text text-muted small border-top">
-                        nationality</p>
+                        is_occupied
+                    </p>
+                    <p class="card-text my-0">
+                        {{object.is_acquired|yesno:"yes,no"|title}}</p>
+                    <p class="card-text text-muted small border-top">
+                        is_acquired
+                    </p>
+                    <p class="card-text my-0">
+                        {{object.is_leased|yesno:"yes,no"|title}}</p>
+                    <p class="card-text text-muted small border-top">is_leased
+                    </p>
+                    <p class="card-text my-0">
+                        {{object.is_queen_chain|yesno:"yes,no"|title}}</p>
+                    <p class="card-text text-muted small border-top">
+                        is_queen_chain
+                    </p>
+                    <p class="card-text my-0">
+                        {{object.is_available|yesno:"yes,no"|title}}</p>
+                    <p class="card-text text-muted small border-top">
+                        is_available
+                    </p>
+                    <p class="card-text my-0">
+                        <a target="_blank"
+                            href="{{object.surveys.last.survey_plan.url|default:'#'}}">
+                            {{object.surveys.last.survey_plan.name|default:"No survey plan"}}
+                        </a>
+                    </p>
+                    <p class="card-text text-muted small border-top">
+                        is_available
+                    </p>
+                    <p class="card-text my-0">
+                        {{object.notes|default:"no notes"}}</p>
+                    <p class="card-text text-muted small border-top">
+                        notes</p>
 
                 </div>
                 <hr>
                 <div class="d-grid gap-2 d-md-block text-end">
+                    <button type="button"
+                        class="btn btn-dark"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        add survey plan
+                    </button>
+                    <!-- <div class="d-grid gap-2 d-md-block text-end">
                     <a class="btn btn-dark"
-                        href="{{object.get_update_url}}">attach identification</a>
+                        href="{{object.get_update_url}}">attach
+                        identification</a> -->
                     <a class="btn btn-sm btn-outline-dark"
                         href="{{object.get_update_url}}">edit</a>
                 </div>
@@ -43,20 +82,55 @@
         </div>
         <div class="col">
             <div class="d-grid gap-2 col-6">
-               
+
                 <a class="btn btn-lg btn-outline-dark py-4"
-                    href="{% url 'clients:identification-create' %}">Add
-                    Property
+                    href="{% url 'applications:individual-create' %}">Add
+                    Application
                 </a>
                 <hr>
                 <a class="btn btn-lg btn-secondary py-4"
-                    href="{% url 'clients:individual-create' %}">Add
-                    another individual
+                    href="{% url 'properties:property-create' %}">Add
+                    another property
 
                 </a>
             </div>
         </div>
     </div>
+</div>
 
+<!-- Modal -->
+<div class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel">{{object}}</h5>
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <form method="post"
+                enctype="multipart/form-data">
+                <div class="modal-body">
+
+                    {% csrf_token %}
+                    {{form|crispy}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-dark"
+                        type="submit">Save</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 </div>
 {% endblock content %}

@@ -11,8 +11,7 @@ New Individual Application
     <h1 class="fs-1">New Individual Application</h1>
     <hr>
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <form class=""
-            action=""
+        <form enctype="multipart/form-data"
             method="post">
             {% csrf_token %}
             {{ form|crispy }}

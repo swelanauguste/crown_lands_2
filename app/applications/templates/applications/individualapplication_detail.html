@@ -28,6 +28,13 @@
 
             <p class="card-text my-0">{{object.received_at|title}}</p>
             <p class="card-text text-muted small border-top">received_at</p>
+            <p class="card-text my-0">
+                <a target="_blank" rel="noopener noreferrer"
+                    href="{{object.file.url|default:'#'}}">
+                {{object.file|default:'--'}}
+                </a>
+            </p>
+            <p class="card-text text-muted small border-top">file</p>
 
         </div>
         <div class="card-footer text-end">

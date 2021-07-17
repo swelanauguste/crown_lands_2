@@ -8,7 +8,7 @@ urlpatterns = [
     path("individuals", views.IndividualList.as_view(), name="individual-list"),
     path(
         "individual/detail/<int:pk>",
-        views.IndividualDetail.as_view(),
+        views.AddIdentification.as_view(),
         name="individual-detail",
     ),
     path(
