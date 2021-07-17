@@ -14,6 +14,7 @@ New Individual Application
         <form class=""
             action=""
             method="post">
+            {% csrf_token %}
             {{ form|crispy }}
             <div class="text-end">
                 <button class="btn btn-sm btn-dark my-3"

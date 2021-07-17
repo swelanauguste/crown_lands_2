@@ -13,34 +13,17 @@
         <li class="mb-1">
             <button class="btn btn-toggle align-items-center rounded collapsed"
                 data-bs-toggle="collapse"
-                data-bs-target="#home-collapse"
-                aria-expanded="true">
-                Applications
-            </button>
-            <div class="collapse show"
-                id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="{% url 'applications:individual-list'%}"
-                            class="link-dark rounded">Individuals</a></li>
-                    <!-- <li><a href="#"
-                            class="link-dark rounded">Updates</a></li>
-                    <li><a href="#"
-                            class="link-dark rounded">Reports</a></li> -->
-                </ul>
-            </div>
-        </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed"
-                data-bs-toggle="collapse"
                 data-bs-target="#dashboard-collapse"
-                aria-expanded="false">
+                aria-expanded="true">
                 Clients
             </button>
-            <div class="collapse"
+            <div class="collapse show"
                 id="dashboard-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li><a href="{% url 'clients:individual-list' %}"
                             class="link-dark rounded">Individuals</a></li>
+                    <li><a href="#"
+                            class="link-dark rounded">Companies</a></li>
                     <!-- <li><a href="#"
                             class="link-dark rounded">Weekly</a></li>
                     <li><a href="#"
@@ -54,20 +37,39 @@
             <button class="btn btn-toggle align-items-center rounded collapsed"
                 data-bs-toggle="collapse"
                 data-bs-target="#orders-collapse"
-                aria-expanded="false">
-                Orders
+                aria-expanded="true">
+                Properties
             </button>
-            <div class="collapse"
+            <div class="collapse show"
                 id="orders-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li><a href="#"
                             class="link-dark rounded">New</a></li>
-                    <li><a href="#"
-                            class="link-dark rounded">Processed</a></li>
-                    <li><a href="#"
+                    <li><a href="{% url 'properties:property-list' %}"
+                            class="link-dark rounded">Properties</a></li>
+                    <!-- <li><a href="#"
                             class="link-dark rounded">Shipped</a></li>
                     <li><a href="#"
-                            class="link-dark rounded">Returned</a></li>
+                            class="link-dark rounded">Returned</a></li> -->
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#home-collapse"
+                aria-expanded="true">
+                Applications
+            </button>
+            <div class="collapse show"
+                id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="{% url 'applications:individual-list'%}"
+                            class="link-dark rounded">Individuals</a></li>
+                    <!-- <li><a href="#"
+                            class="link-dark rounded">Updates</a></li>
+                    <li><a href="#"
+                            class="link-dark rounded">Reports</a></li> -->
                 </ul>
             </div>
         </li>

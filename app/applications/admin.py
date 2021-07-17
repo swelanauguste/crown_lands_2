@@ -3,7 +3,16 @@ from django.contrib import admin
 from .models import (
     IndividualApplication,
     AssignApplication,
+    ApplicationStatus,
+    ApplicationType,
+    Easement,
+    LandUse
 )
+
+admin.site.register(ApplicationStatus)
+admin.site.register(ApplicationType)
+admin.site.register(Easement)
+admin.site.register(LandUse)
 
 
 @admin.register(AssignApplication)

@@ -10,5 +10,57 @@ Home
 <div class="container my-5">
     <h1 class="fs-1">Home</h1>
     <hr>
+    <div class="container my-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow-lg" 
+                    style="width: 18rem;">
+                    <div class="card-header">
+                        <h5 class="card-title">Applications</h5>
+
+                    </div>
+                    <div class="card-body">
+                        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle
+                        </h6> -->
+                        <p class="card-text">Some quick example text to build
+                            on the card title and make up the bulk of the
+                            card's content.</p>
+                       
+                   
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'applications:individual-list' %}"
+                        class="card-link">Individual</a>
+                        <a href="#"
+                        class="card-link text-muted">Company</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-lg" 
+                    style="width: 18rem;">
+                    <div class="card-header">
+                        <h5 class="card-title">Clients</h5>
+
+                    </div>
+                    <div class="card-body">
+                        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle
+                        </h6> -->
+                        <p class="card-text">Some quick example text to build
+                            on the card title and make up the bulk of the
+                            card's content.</p>
+                       
+                   
+                    </div>
+                    <div class="card-footer">
+                        <a href="#"
+                        class="card-link">Individual</a>
+                        <a href="#"
+                        class="card-link">Company</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

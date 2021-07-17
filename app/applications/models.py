@@ -17,8 +17,39 @@ def application_documents_directory_path(instance, filename):
     return "application_documents/{0}/{1}".format(instance.id, filename)
 
 
+class ApplicationStatus(TimeStampMixin):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "Application Statuses"
+
+    def __str__(self):
+        return self.name
+
+
+class LandUse(TimeStampMixin):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class ApplicationType(TimeStampMixin):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class Easement(TimeStampMixin):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class IndividualApplication(TimeStampMixin):
-    filing_number = models.CharField(max_length=200, unique=True, blank=True)
+    filing_number = models.CharField(max_length=200, unique=True, null=True, blank=True)
     application_number = models.CharField(
         max_length=20, unique=True, null=True, blank=True
     )
@@ -26,24 +57,22 @@ class IndividualApplication(TimeStampMixin):
     applicant = models.ForeignKey(
         Individual, on_delete=models.SET_NULL, null=True, blank=True
     )
-    status = models.CharField(
-        max_length=20, default="pending", choices=APPLICATION_STATUS_LIST
+    status = models.ForeignKey(
+        ApplicationStatus,
+        related_name="application_statuses",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )
     block_parcel = models.ForeignKey(Property, null=True, on_delete=models.SET_NULL)
-    application_type = models.CharField(
-        max_length=20, default="PURCHASE", choices=APPLICATION_TYPE
-    )
+    application_type = models.ManyToManyField(ApplicationType)
     received_at = models.CharField(
-        max_length=20, default="CASTRIES", choices=OFFICE_LIST
+        max_length=255, default="CASTRIES", choices=OFFICE_LIST
     )
-    land_use = models.CharField(
-        max_length=20, default="RESIDENTIAL", choices=LAND_USE_LIST
-    )
+    land_use = models.ManyToManyField(LandUse)
     other_land_uses = models.CharField(max_length=200, blank=True, null=True)
     response_date = models.DateTimeField(blank=True, null=True)
-    easement = models.CharField(
-        max_length=25, default="WATER CONNECTION", choices=EASEMENT_LIST
-    )
+    easement = models.ManyToManyField(Easement)
     other_easement = models.CharField(max_length=200, blank=True, null=True)
     date_completed = models.DateTimeField(null=True, blank=True)
     notes = models.TextField(blank=True)

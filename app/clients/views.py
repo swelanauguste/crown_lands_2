@@ -34,10 +34,10 @@ class IndividualDetail(DetailView):
 
 class IndividualUpdate(UpdateView):
     model = Individual
-    form_class = IndividualCreateForm
+    form_class = IndividualUpdateForm
     template_name_suffix = "_update_form"
 
 
 class IndividualCreate(CreateView):
     model = Individual
-    form_class = IndividualUpdateForm
+    form_class = IndividualCreateForm

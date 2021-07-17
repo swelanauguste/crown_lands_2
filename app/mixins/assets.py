@@ -119,6 +119,9 @@ QUARTER_LIST = [
 COMMUNITY_LIST = [
     ("ROCK HALL", "ROCK HALL"),
     ("PAVEE", "PAVEE"),
+    ("UNION", "UNION"),
+    ("BATATA", "BATATA"),
+    ("TI MORNE", "TI MORNE"),
     ("MORNE FORTUNE", "MORNE FORTUNE"),
     ("DERRIERE", "DERRIERE"),
     ("BEXON", "BEXON"),

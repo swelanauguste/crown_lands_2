@@ -11,8 +11,8 @@ Individuals
     <h1 class="fs-1">Individuals</h1>
     <hr>
     <div class="container">
-        <a class="btn btn-dark mb-5 px-5"
-            href="{% url 'clients:individual-create' %}">add</a>
+        <a class="btn btn-lg btn-dark mb-5"
+            href="{% url 'properties:property-create' %}">add</a>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">
@@ -41,7 +41,7 @@ Individuals
                     <td>{{object.nationality}}</td>
                 </tr>
                 {% empty %}
-                <td colspan="5">
+                <td colspan="4">
                     <h4 class="text-center">No Individuals</h4>
                 </td>
                 {% endfor %}

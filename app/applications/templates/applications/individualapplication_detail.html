@@ -8,18 +8,31 @@
 {% block content %}
 <div class="container my-5">
     <h1 class="fs-2">{{object}}</h1>
-  
-    <div class="card" style="max-width: 32rem;">
-        <div class="card-body">
-            <p class="card-text">{{object.applicant_number}}</p> 
-            <p class="card-text text-muted small border-top">application number</p>
-            <p class="card-text">{{object.date_received}}</p> 
-            <p class="card-text">{{object.status|title}}</p> 
-            <p class="card-text">{{object.application_type|title}}</p> 
-            <p class="card-text">{{object.received_at|title}}</p> 
+
+    <div class="card"
+        style="max-width: 32rem;">
+        <div class="card-body text-end">
+            <p class="card-text my-0">
+                {{object.application_number|default:"--"}}</p>
+            <p class="card-text text-muted small border-top">application number
+            </p>
+            <p class="card-text my-0">{{object.date_received}}</p>
+            <p class="card-text text-muted small border-top">date_received</p>
+
+            <p class="card-text my-0">{{object.status|title}}</p>
+            <p class="card-text text-muted small border-top">status</p>
+
+            <p class="card-text my-0">{{object.application_type }}</p>
+            <p class="card-text text-muted small border-top">application_type
+            </p>
+
+            <p class="card-text my-0">{{object.received_at|title}}</p>
+            <p class="card-text text-muted small border-top">received_at</p>
+
         </div>
         <div class="card-footer text-end">
-            <a class="btn btn-dark" href="{{object.get_update_url}}">Edit</a>
+            <a class="btn btn-dark"
+                href="{{object.get_update_url}}">Edit</a>
         </div>
     </div>
 </div>

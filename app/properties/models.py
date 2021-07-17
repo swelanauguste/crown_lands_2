@@ -1,28 +1,46 @@
 from django.db import models
 from django.urls import reverse
 from mixins.assets import TimeStampMixin, COMMUNITY_LIST, QUARTER_LIST
+from locations.models import CommunityList, QuarterList
 
 
 class Property(TimeStampMixin):
     block = models.CharField(max_length=5, unique=True, null=True)
     parcel = models.CharField(max_length=3, unique=True, null=True)
-    community = models.CharField(max_length=50, choices=COMMUNITY_LIST)
+    community = models.ForeignKey(
+        CommunityList,
+        related_name="property_communities",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    quarter = models.ForeignKey(
+        QuarterList,
+        related_name="property_quarters",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    quarter = models.CharField(max_length=50, null=True, choices=QUARTER_LIST)
     is_occupied = models.BooleanField(default=False, blank=True)
     is_acquired = models.BooleanField(default=False, blank=True)
     is_leased = models.BooleanField(default=False, blank=True)
     is_queen_chain = models.BooleanField("queen's chain", default=False, blank=True)
     is_available = models.BooleanField(default=False, blank=True)
-    area_requested = models.CharField(max_length=10, null=True, blank=True, help_text="(imperial/metric)")
+    area_requested = models.CharField(
+        max_length=10, null=True, blank=True, help_text="(imperial/metric)"
+    )
     occupied_by_me = models.BooleanField(default=False, blank=True)
     years_occupied_by_me = models.PositiveSmallIntegerField(null=True, blank=True)
-    notes = models.TextField(blank=True,  null=True)
+    notes = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "properties"
         unique_together = ["block", "parcel"]
 
+    def get_update_url(self):
+        return reverse("properties:property-update", kwargs={"pk": self.pk})
+
     def get_absolute_url(self):
-        return reverse("properties:detail", kwargs={"pk": self.pk})
+        return reverse("properties:property-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return "%s %s" % (self.block, self.parcel)
