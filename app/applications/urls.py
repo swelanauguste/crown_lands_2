@@ -15,7 +15,7 @@ urlpatterns = [
     ),
     path(
         "individual/detail/<int:pk>",
-        views.IndividualApplicationDetail.as_view(),
+        views.AssignApplicationDetailFormView.as_view(),
         name="individual-detail",
     ),
     path(

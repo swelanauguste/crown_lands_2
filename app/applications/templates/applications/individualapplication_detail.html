@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% load crispy_forms_tags %}
 {% block title %}
 {{object}}
 {% endblock title %}
@@ -23,6 +23,12 @@
             <p class="card-text text-muted small border-top">status</p>
 
             <p class="card-text my-0">
+                
+               {{object.assign_applications.last.employee}}
+            </p>
+            <p class="card-text text-muted small border-top">assigned_to</p>
+
+            <p class="card-text my-0">
                 {% for application_type in object.application_type.all %}
                 {{application_type}}
                 {% endfor %}
@@ -43,8 +49,56 @@
 
         </div>
         <div class="card-footer text-end">
-            <a class="btn btn-dark"
-                href="{{object.get_update_url}}">Edit</a>
+
+        <div class="d-grid gap-2 d-md-block text-end">
+
+            <button type="button"
+                class="btn btn-dark"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                assign this application
+            </button>
+
+                <a class="btn btn-outline-dark"
+                    href="{{object.get_update_url}}">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel">{{object}}</h5>
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action=""
+                    method="post"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-dark"
+                    type="submit">Save</button>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
