@@ -6,9 +6,9 @@ from django.conf.urls.static import static
 from applications.views import Index
 
 urlpatterns = [
-    path("", Index.as_view(), name="index"),
+    # path("", Index.as_view(), name="index"),
     path("admin/", admin.site.urls),
-    path("applications/", include("applications.urls", namespace="applications")),
+    path("", include("applications.urls", namespace="applications")),
     path("clients/", include("clients.urls", namespace="clients")),
     path("properties/", include("properties.urls", namespace="properties")),
     path("accounts/", include("allauth.urls")),

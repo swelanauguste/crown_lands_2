@@ -1,7 +1,5 @@
 from django import forms
 from django.forms import widgets
-from mixins.assets import LAND_USE_LIST, EASEMENT_LIST, APPLICATION_TYPE
-
 from .models import IndividualApplication
 
 

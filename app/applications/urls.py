@@ -4,7 +4,7 @@ from . import views
 app_name = "applications"
 urlpatterns = [
     path(
-        "individual/list",
+        "",
         views.IndividualApplicationList.as_view(),
         name="individual-list",
     ),

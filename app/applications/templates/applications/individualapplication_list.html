@@ -16,8 +16,8 @@ Individual Applications
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">received</th>
+                    <th scope="col">application_number</th>
                     <th scope="col">status</th>
                     <th scope="col">black and parcel</th>
                     <th scope="col">type</th>
@@ -29,11 +29,15 @@ Individual Applications
                 {% for object in object_list %}
 
                 <tr>
-                    <td>{{object.applicant_number}}</td>
                     <td>{{object.date_received}}</td>
+                    <td>{{object.application_number}}</td>
                     <td>{{object.status}}</td>
                     <td>{{object.block_parcel}}</td>
-                    <td>{{object.application_type}}</td>
+                    <td>
+                        {% for application_type in object.application_type.all %}
+                        {{application_type}}
+                        {% endfor %}
+                    </td>
                     <td>
                         <a href="{{object.get_absolute_url}}">
                             details

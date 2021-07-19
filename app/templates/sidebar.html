@@ -95,5 +95,26 @@
                 </ul>
             </div>
         </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#orders-collapse"
+                aria-expanded="true">
+                Employees
+            </button>
+            <div class="collapse show"
+                id="orders-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#"
+                            class="link-dark rounded">New</a></li>
+                    <li><a href="{% url 'properties:property-list' %}"
+                            class="link-dark rounded">Properties</a></li>
+                    <!-- <li><a href="#"
+                            class="link-dark rounded">Shipped</a></li>
+                    <li><a href="#"
+                            class="link-dark rounded">Returned</a></li> -->
+                </ul>
+            </div>
+        </li>
     </ul>
 </div>
