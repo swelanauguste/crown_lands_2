@@ -5,6 +5,8 @@ from django.http import HttpResponseForbidden
 from .models import IndividualApplication
 from .forms import IndividualApplicationCreateForm, IndividualApplicationUpdateForm, AssignApplicationForm
 
+
+
 class AssignApplicationDetailFormView(FormMixin, DetailView):
     model = IndividualApplication
     form_class = AssignApplicationForm
