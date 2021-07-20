@@ -73,6 +73,7 @@ class IndividualApplication(TimeStampMixin):
     easement = models.ManyToManyField(Easement)
     other_easement = models.CharField(max_length=200, blank=True, null=True)
     date_completed = models.DateTimeField(null=True, blank=True)
+    is_queen_chain = models.BooleanField("queen's chain", default=False, blank=True)
     occupied_by_me = models.BooleanField(default=False, blank=True)
     years_occupied_by_me = models.PositiveSmallIntegerField(null=True, blank=True)
     area_requested = models.CharField(

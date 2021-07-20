@@ -7,8 +7,8 @@ from mixins.assets import COMMUNITY_LIST, QUARTER_LIST, TimeStampMixin
 
 
 class Property(TimeStampMixin):
-    block = models.CharField(max_length=5, unique=True, null=True)
-    parcel = models.CharField(max_length=3, unique=True, null=True)
+    block = models.CharField(max_length=5, null=True)
+    parcel = models.CharField(max_length=3, null=True)
     community = models.ForeignKey(
         CommunityList,
         related_name="property_communities",
@@ -27,7 +27,6 @@ class Property(TimeStampMixin):
     is_leased = models.BooleanField(default=False, blank=True)
     is_queen_chain = models.BooleanField("queen's chain", default=False, blank=True)
     is_available = models.BooleanField(default=False, blank=True)
-
     notes = models.TextField(blank=True, null=True)
 
     class Meta:
