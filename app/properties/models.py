@@ -57,7 +57,7 @@ class Survey(TimeStampMixin):
     block_parcel = models.ForeignKey(
         Property, related_name="surveys", on_delete=models.SET_NULL, null=True
     )
-    survey_plan_no = models.CharField(max_length=200, unique=True, null=True)
+    survey_plan_no = models.CharField(max_length=200, null=True)
     survey_plan = models.FileField(upload_to=survey_plans_directory_path, blank=True)
     date_surveyed = models.DateField(blank=True, null=True)
     parcel_h = models.PositiveIntegerField("hectares", default=0)

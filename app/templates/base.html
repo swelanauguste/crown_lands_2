@@ -8,6 +8,11 @@
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1">
+        
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
     <link
@@ -29,9 +34,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
         rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
-        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
-        crossorigin="anonymous"></script>
+
 
     <style>
         html,
@@ -141,9 +144,7 @@
     </style>
 
     <title>
-
         {% block title %}
-        Individual Applications
         {% endblock title %}
         - Crown Lands
     </title>
@@ -158,6 +159,8 @@
                 Crown Lands
             </h1>
         </a>
+
+        {% include 'messages.html' %}
 
         <div class="col-sm-12 col-md-12 col-lg-3">
             {% include "sidebar.html" %}

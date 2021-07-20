@@ -1,22 +1,20 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseForbidden
-from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 from django.views.generic.edit import FormMixin
 
 from .forms import PropertyCreateForm, PropertyUpdateForm, SurveyCreateForm
 from .models import Property, Survey
 
 
-class AddSurvey(FormMixin, DetailView):
+class AddSurvey(LoginRequiredMixin, SuccessMessageMixin, FormMixin, DetailView):
     model = Property
     form_class = SurveyCreateForm
+    success_message = "%(block_parcel)s was added successfully"
 
     def get_success_url(self, **kwargs):
         return self.object.get_absolute_url()
@@ -43,16 +41,18 @@ class PropertyListView(ListView):
     model = Property
 
 
-class PropertyCreateView(CreateView):
+class PropertyCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Property
     form_class = PropertyCreateForm
+    success_message = "%(block)s  %(parcel)s was created successfully"
 
 
-class PropertyDetailView(DetailView):
+class PropertyDetailView(LoginRequiredMixin, DetailView):
     model = Property
 
 
-class PropertyUpdateView(UpdateView):
+class PropertyUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Property
     form_class = PropertyUpdateForm
     template_name_suffix = "_update_form"
+    success_message = "%(block)s  %(parcel)s was updated successfully"

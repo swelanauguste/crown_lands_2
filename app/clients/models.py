@@ -86,6 +86,7 @@ class Identification(TimeStampMixin):
     individual = models.ForeignKey(
         Individual, related_name="identifications", null=True, on_delete=models.SET_NULL
     )
+    id_number = models.CharField(max_length=50, blank=True, null=True, unique=True)
     file = models.FileField(upload_to=identification_documents_directory_path)
 
     def __str__(self):

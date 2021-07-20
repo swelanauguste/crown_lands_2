@@ -6,10 +6,10 @@ from .models import Individual, Identification
 class IdentificationCreateForm(forms.ModelForm):
     class Meta:
         model = Identification
-        fields = ["individual", "id_type", "file"]
-        # widgets = {
-        #     "individual": forms.HiddenInput(),
-        # }
+        fields = ["individual", "id_type", "id_number", "file"]
+        widgets = {
+            "individual": forms.HiddenInput(),
+        }
 
 
 class IdentificationUpdateForm(forms.ModelForm):

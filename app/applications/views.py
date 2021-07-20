@@ -1,15 +1,32 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
-from django.views.generic.edit import FormMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseForbidden
+from django.shortcuts import render
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
+from django.views.generic.edit import FormMixin
+
+from .forms import (
+    AssignApplicationForm,
+    IndividualApplicationCreateForm,
+    IndividualApplicationUpdateForm,
+)
 from .models import IndividualApplication
-from .forms import IndividualApplicationCreateForm, IndividualApplicationUpdateForm, AssignApplicationForm
 
 
-
-class AssignApplicationDetailFormView(FormMixin, DetailView):
+class AssignApplicationDetailFormView(
+    LoginRequiredMixin, SuccessMessageMixin, FormMixin, DetailView
+):
     model = IndividualApplication
     form_class = AssignApplicationForm
+    success_message = (
+        "Application %(application)s was assigned to %(employee)s successfully"
+    )
 
     def get_success_url(self, **kwargs):
         return self.object.get_absolute_url()
@@ -30,23 +47,28 @@ class AssignApplicationDetailFormView(FormMixin, DetailView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
 class Index(TemplateView):
-    template_name = 'index.html'
+    template_name = "index.html"
 
-class IndividualApplicationList(ListView):
+
+class IndividualApplicationList(LoginRequiredMixin, ListView):
     model = IndividualApplication
 
 
-class IndividualApplicationDetail(DetailView):
+class IndividualApplicationDetail(LoginRequiredMixin, DetailView):
     model = IndividualApplication
 
 
-class IndividualApplicationCreate(CreateView):
+class IndividualApplicationCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = IndividualApplication
     form_class = IndividualApplicationCreateForm
+    success_message = "Application %(application_number)s was created to successfully"
 
 
-class IndividualApplicationUpdate(UpdateView):
+class IndividualApplicationUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = IndividualApplication
     form_class = IndividualApplicationUpdateForm
-    template_name_suffix = '_update_form'
+    template_name_suffix = "_update_form"
+    success_message = "Application %(block_parcel)s was updated to successfully"

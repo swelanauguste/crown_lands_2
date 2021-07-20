@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, DetailView
 
 from .models import Employee
+from .forms import EmployeeUpdateForm
 
 
 class EmployeeListView(ListView):
@@ -10,7 +11,8 @@ class EmployeeListView(ListView):
 
 class EmployeeUpdateView(UpdateView):
     model = Employee
-    fields = "__all__"
+    form_class = EmployeeUpdateForm
+    template_name_suffix = "_update_form"
 
 
 class EmployeeDetailView(DetailView):

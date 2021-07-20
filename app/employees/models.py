@@ -47,6 +47,9 @@ class Employee(models.Model):
     is_commissioner = models.BooleanField(default=False)
     is_deputy_commissioner = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ["last_name", "first_name"]
+
     def get_absolute_url(self):
         return reverse("employees:employee-detail", kwargs={"pk": self.pk})
 
@@ -63,5 +66,5 @@ class Employee(models.Model):
 
     def __str__(self):
         if self.first_name and self.last_name:
-            return "%s, %s" % (self.last_name, self.first_name)
-        return str(self.employee)
+            return ("%s, %s" % (self.last_name, self.first_name)).title()
+        return str(self.employee).lower()
