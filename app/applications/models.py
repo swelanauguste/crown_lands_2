@@ -49,12 +49,6 @@ class Easement(TimeStampMixin):
 
 
 class IndividualApplication(TimeStampMixin):
-    filing_number = models.CharField(max_length=200, unique=True, null=True, blank=True)
-    application_number = models.CharField(
-        max_length=20, unique=True, null=True, blank=True
-    )
-    date_received = models.DateField(null=True, blank=True)
-    applicant = models.ManyToManyField(Individual)
     status = models.ForeignKey(
         ApplicationStatus,
         related_name="application_statuses",
@@ -62,25 +56,33 @@ class IndividualApplication(TimeStampMixin):
         null=True,
         blank=True,
     )
+    applicant = models.ManyToManyField(Individual)
     block_parcel = models.ForeignKey(Property, null=True, on_delete=models.SET_NULL)
+    filing_number = models.CharField(max_length=200, unique=True, null=True, blank=True)
+    application_number = models.CharField(
+        max_length=20, unique=True, null=True, blank=True
+    )
+    date_received = models.DateField(null=True, blank=True)
     application_type = models.ManyToManyField(ApplicationType)
     received_at = models.CharField(
         max_length=255, default="CASTRIES", choices=OFFICE_LIST
     )
-    land_use = models.ManyToManyField(LandUse)
-    other_land_uses = models.CharField(max_length=200, blank=True, null=True)
-    response_date = models.DateTimeField(blank=True, null=True)
-    easement = models.ManyToManyField(Easement)
-    other_easement = models.CharField(max_length=200, blank=True, null=True)
-    date_completed = models.DateTimeField(null=True, blank=True)
-    is_queen_chain = models.BooleanField("queen's chain", default=False, blank=True)
+    # is_queen_chain = models.BooleanField("queen's chain", default=False, blank=True)
     occupied_by_me = models.BooleanField(default=False, blank=True)
     years_occupied_by_me = models.PositiveSmallIntegerField(null=True, blank=True)
     area_requested = models.CharField(
         max_length=10, null=True, blank=True, help_text="(imperial/metric)"
     )
+    land_use = models.ManyToManyField(LandUse)
+    other_land_uses = models.CharField(max_length=200, blank=True, null=True)
+    # response_date = models.DateTimeField(blank=True, null=True)
+    easement = models.ManyToManyField(Easement)
+    other_easement = models.CharField(max_length=200, blank=True, null=True)
+    # date_completed = models.DateTimeField(null=True, blank=True)
     notes = models.TextField(blank=True)
-    file = models.FileField(upload_to=application_documents_directory_path, blank=True)
+    application_form = models.FileField(
+        upload_to=application_documents_directory_path, blank=True
+    )
 
     def get_update_url(self):
         return reverse("applications:individual-update", kwargs={"pk": self.pk})

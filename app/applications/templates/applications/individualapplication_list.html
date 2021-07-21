@@ -21,16 +21,18 @@ Individual Applications
                     <th scope="col">status</th>
                     <th scope="col">black and parcel</th>
                     <th scope="col">type</th>
-                    <th scope="col"></th>
+                    <th scope="col">application form</th>
                 </tr>
             </thead>
             <tbody>
-
                 {% for object in object_list %}
-
                 <tr>
                     <td>{{object.date_received}}</td>
-                    <td>{{object.application_number}}</td>
+                    <td>
+                        <a href="{{object.get_absolute_url}}">
+                        {{object.application_number}}
+                        </a>
+                    </td>
                     <td>{{object.status}}</td>
                     <td>{{object.block_parcel}}</td>
                     <td>
@@ -38,18 +40,19 @@ Individual Applications
                         {{application_type}}
                         {% endfor %}
                     </td>
+                    {% if object.application_form %}
                     <td>
-                        <a href="{{object.get_absolute_url}}">
-                            details
+                        <a href="{{object.application_form.url}}">
+                            {{object.application_form}}
                         </a>
                     </td>
+                    {% endif %}
                 </tr>
                 {% empty %}
                 <td colspan="4">
                     <h4 class="text-center">No Individual Applications</h4>
                 </td>
                 {% endfor %}
-
             </tbody>
         </table>
     </div>
